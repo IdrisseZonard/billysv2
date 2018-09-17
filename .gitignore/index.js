@@ -118,7 +118,7 @@ bot.on('message', message => {
             .setAuthor("🛠️ Notre Discord")
             .setFooter(message.author.username, message.author.avatarURL)
             .setTimestamp()
-            .addField("Nom du Discord", message.guild.name)
+            .addField("Nom du Discord", "BILLY'S | SUPPORT | DEV BOT FREE")
             .addField("Membre Total", message.guild.memberCount)
             .setColor("00FBDA")
         message.channel.sendEmbed(embed)
