@@ -84,13 +84,9 @@ bot.on('message', message => {
     bot.on('message', message => {
 
         if(message.content === prefix + "serverlist")
-            var embed = new Discord.RichEmbed()
-            .setAuthor("Nos partenaires")
-            .setFooter(message.author.username, message.author.avatarURL)
-            .setTimestamp()
-            .addField("bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`)")
-            .setColor("00FBDA")
-        message.channel.sendEmbed(embed)
+            message.channel.send("Petit test")
+            message.channel.send("Petit test")
+            message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
     });
 
     bot.on('message', message => {
@@ -119,7 +115,7 @@ bot.on('message', message => {
 
     bot.on('message', message => {
     
-        if(message.content === prefix + "test") {
+        if(message.content === prefix + "infodiscord") {
             var embed = new Discord.RichEmbed()
             .setAuthor("🛠️ Notre communauté")
             .setFooter(message.author.username, message.author.avatarURL)
