@@ -84,8 +84,6 @@ bot.on('message', message => {
     bot.on('message', message => {
 
         if(message.content === prefix + "serverlist")
-            message.channel.send("On fait des lover")
-            message.channel.send("oé javoue")
             message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
     });
 
