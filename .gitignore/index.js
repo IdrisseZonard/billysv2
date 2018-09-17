@@ -111,16 +111,3 @@ bot.on('message', message => {
         var role = member.guild.roles.find('name', '🔊 Membre Communauté 🔊');
         member.addRole(role)
     });
-
-    bot.on('message', message => {
-
-        if(message.content === prefix + "communaute")
-            var embed = new Discord.RichEmbed()
-            .setAuthor("🛠️ Notre communauté")
-            .setFooter(message.author.username, message.author.avatarURL)
-            .setTimestamp()
-            .addField("Le dicord BillyRP", "https://discord.gg/QuvxPrf")
-            .addField("Le dicord Billy's Pub", "https://discord.gg/78txJyR")
-            .setColor("00FBDA")
-        message.channel.sendEmbed(embed)
-    });
