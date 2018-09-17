@@ -84,7 +84,13 @@ bot.on('message', message => {
     bot.on('message', message => {
 
         if(message.content === prefix + "serverlist")
-            message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
+            var embed = new Discord.RichEmbed()
+            .setAuthor("Nos partenaires")
+            .setFooter(message.author.username, message.author.avatarURL)
+            .setTimestamp()
+            .addField("bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`)")
+            .setColor("00FBDA")
+        message.channel.sendEmbed(embed)
     });
 
     bot.on('message', message => {
