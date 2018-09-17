@@ -150,3 +150,10 @@ bot.on('message', message => {
             .setColor("00FBDA")
         message.channel.sendEmbed(embed)
     });
+
+    bot.on('message', message => {
+        if(message.content === prefix + "test") {
+            message.author.createDM().then(channel => {
+                channel.send('Un ptit test')
+                }}
+    }});
