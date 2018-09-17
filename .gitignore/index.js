@@ -115,7 +115,6 @@ bot.on('message', message => {
     
         if(message.content === prefix + "infodiscord") {
             var embed = now Discord.RicheEmbed()
-            .setDescription("Informations du Discord")
             .addField("Utilisateurs sur le dicord", message.guild.memberCount)
             .setColor("E26302")
         message.channel.sendEmbed(embed)
