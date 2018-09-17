@@ -1,3 +1,34 @@
+const Discord = require('discord.js');
+const bot = new Discord.Client();
+
+var prefix = ("-!")
+
+bot.on('ready', function() {
+    bot.user.setActivity('-!help', { type: 'PLAYING' });
+    console.log("Connectedç");
+});
+
+bot.login("NDkwMzE1NzU3NzI1NDE3NDcz.DoDLUw.If9Nq8qzMLHDYRXgTmiGL_jlvDY");
+
+bot.on('message', message => {
+    if (message.content === prefix + "help") {
+
+        var help_embed = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .setFooter("Billy's BOT V2")
+        .setTimestamp()
+        .setColor("E26302") //http://www.code-couleur.com
+        .addField(":cop: Modération \n \n - Ban | Usage -!ban @user \n - Kick | Usage -!kick @user \n - Mute | ( EN DEV ) \n - Clear | Usage -!clear <nombre> \n", ".")
+        .addField(":bust_in_silhouette: Joueur \n \n- Aide | Usage -!help \n- Informations Discord | Usage -!infodiscord \n- Server List | Usage -!serverlist \n- Ping | Usage -!ping \n- Communauté  | Usage -!communaute", ".")
+        message.channel.send(help_embed)
+          }
+
+    if (message.content === "fdp"){
+        message.delete()
+        message.reply("Insulte interdit ! Le Staff te surveilles");
+        console.log("Insulte FDP");
+    }
+});
 bot.on('message', message => {
     let command = message.content.split(" ")[0];
     const args = message.content.slice(prefix.lenght).split(/ +/);
