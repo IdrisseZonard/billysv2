@@ -150,3 +150,4 @@ bot.on('message', message => {
             .setColor("00FBDA")
         message.channel.sendEmbed(embed)
     });
+
