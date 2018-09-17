@@ -83,13 +83,8 @@ bot.on('message', message => {
 
     bot.on('message', message => {
 
-        if(message.content === prefix + "serverlist")
-            message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
-    });
-
-    bot.on('message', message => {
-
         if(message.content === prefix + "ping")
+        message.delete()
         message.author.send('Temps de latence avec le serveur: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
     });
 
