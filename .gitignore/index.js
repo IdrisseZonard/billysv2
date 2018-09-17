@@ -12,6 +12,7 @@ bot.login(process.env.TOKEN);
 
 bot.on('message', message => {
     if (message.content === prefix + "help") {
+    message.delete()
 
         var help_embed = new Discord.RichEmbed()
         .setAuthor("Les commandes")
@@ -95,7 +96,8 @@ bot.on('message', message => {
 
     bot.on('message', message => {
     
-        if(message.content === prefix + "communaute")
+        if(message.content === prefix + "communaute") {
+        message.delete()
             var embed = new Discord.RichEmbed()
             .setAuthor("🛠️ Notre communauté")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -109,6 +111,7 @@ bot.on('message', message => {
     bot.on('message', message => {
     
         if(message.content === prefix + "infodiscord") {
+        message.delete()
             var embed = new Discord.RichEmbed()
             .setAuthor("🛠️ Notre communauté")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -138,6 +141,7 @@ bot.on('message', message => {
     bot.on('message', message => {
     
         if(message.content === prefix + "partenaire") {
+        message.delete()
             var embed = new Discord.RichEmbed()
             .setAuthor("🛠️ Les Partenariats")
             .setFooter(message.author.username, message.author.avatarURL)
