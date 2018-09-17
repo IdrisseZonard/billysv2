@@ -113,13 +113,13 @@ bot.on('message', message => {
 
     bot.on('message', message => {
     
-        if(message.content === prefix + "total")
+        if(message.content === prefix + "infodiscord")
             var embed = new Discord.RichEmbed()
-            .setAuthor("🛠️ Notre communauté")
+            .setAuthor("🛠️ Notre Discord")
             .setFooter(message.author.username, message.author.avatarURL)
             .setTimestamp()
-            .addField("Le dicord BillyRP", "https://discord.gg/QuvxPrf")
-            .addField("Le dicord Billy's Pub", message.guild.memberCount)
+            .addField("Nom du Discord", message.guild.name)
+            .addField("Membre Total", message.guild.memberCount)
             .setColor("00FBDA")
         message.channel.sendEmbed(embed)
     });
