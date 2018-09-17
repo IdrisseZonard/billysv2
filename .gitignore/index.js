@@ -113,15 +113,15 @@ bot.on('message', message => {
 
     bot.on('message', message => {
     
-        if(message.content === prefix + "ontest")
+        if(message.content === prefix + "test") {
             var embed = new Discord.RichEmbed()
-            .setAuthor("🛠️ Notre Discord")
-            .setFooter(message.author.username, message.author.avatarURL)
-            .setTimestamp()
-            .addField("Nom du Discord", "BILLY'S | SUPPORT | DEV BOT FREE")
-            .addField("Membre Total", message.guild.memberCount)
-            .setColor("00FBDA")
+            .setDescription("Informations du Discord")
+            .addField("Nom du dicord", message.guild.name)
+            .addField("Crée le", message.guild.createdAt)
+            .addField("Tu as rejoin le", message.member.joinedAt)
+            .addField("Utilisateurs sur le dicord", message.guild.memberCount)
+            .setColor("E26302")
         message.channel.sendEmbed(embed)
-    });
+    }});
 
 
