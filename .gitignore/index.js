@@ -92,22 +92,3 @@ bot.on('message', message => {
         if(message.content === prefix + "ping")
             message.channel.sendMessage('Temps de latence avec le serveur: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
     });
-
-    bot.on('message', message => {
-
-        if(message.content.startsWith(prefix + "clear")) {
-            if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas la permission !");
-    
-            let args = message.content.split(" ").slice(1);
-    
-            if(!args[0]) return message.channel.send("Tu dois préciser un nombre de messages à supprimer !")
-            message.channel.bulkDelete(args[0]).then(() => {
-                message.channel.send(`${args[0]} message ont été supprimés !`);
-        })
-      }
-    });
-
-    bot.on('guildMemberAdd', member => {
-        var role = member.guild.roles.find('name', '🔊 Membre Communauté 🔊');
-        member.addRole(role)
-    });
