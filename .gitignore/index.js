@@ -100,7 +100,7 @@ bot.on('message', message => {
             .addField("Tu as rejoin le", message.member.joinedAt)
             .addField("Membre Total", message.guild.memberCount)
             .setColor("00FBDA")
-        message.channel.sendEmbed(embed)
+        message.getChannel(491101368694603778).send(embed)
     });
 
     bot.on("guildMemberAdd", member => {
