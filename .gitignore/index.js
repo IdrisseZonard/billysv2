@@ -90,7 +90,7 @@ bot.on('message', message => {
     bot.on('message', message => {
 
         if(message.content === prefix + "ping")
-            message.channel.sendMessage('Temps de latence avec le serveur: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
+        message.author.send('Temps de latence avec le serveur: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
     });
 
     bot.on('guildMemberAdd', member => {
