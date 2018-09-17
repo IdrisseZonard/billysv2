@@ -113,7 +113,7 @@ bot.on('message', message => {
 
     bot.on('message', message => {
     
-        if(message.content === prefix + "infodiscord")
+        if(message.content === prefix + "ontest")
             var embed = new Discord.RichEmbed()
             .setAuthor("🛠️ Notre Discord")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -123,3 +123,5 @@ bot.on('message', message => {
             .setColor("00FBDA")
         message.channel.sendEmbed(embed)
     });
+
+
