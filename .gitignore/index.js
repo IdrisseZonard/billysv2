@@ -99,7 +99,7 @@ bot.on('message', message => {
     });
 
     bot.on('message', message => {
-
+    
         if(message.content === prefix + "communaute")
             var embed = new Discord.RichEmbed()
             .setAuthor("🛠️ Notre communauté")
@@ -112,13 +112,10 @@ bot.on('message', message => {
     });
 
     bot.on('message', message => {
-
+    
         if(message.content === prefix + "infodiscord") {
             var embed = now Discord.RicheEmbed()
             .setDescription("Informations du Discord")
-            .addField("Nom du dicord", message.guild.name)
-            .addField("Crée le", message.guild.createdAt)
-            .addField("Tu as rejoin le", message.member.joineAt)
             .addField("Utilisateurs sur le dicord", message.guild.memberCount)
             .setColor("E26302")
         message.channel.sendEmbed(embed)
