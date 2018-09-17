@@ -140,3 +140,14 @@ bot.on('message', message => {
       }
     });
 
+    bot.on('message', message => {
+    
+        if(message.content === prefix + "partenaire") {
+            var embed = new Discord.RichEmbed()
+            .setAuthor("🛠️ Les Partenariats")
+            .setFooter(message.author.username, message.author.avatarURL)
+            .setTimestamp()
+            .addField("Commande en Développement", "Contactez @Idrisse LaZone#4051")
+            .setColor("E26302")
+        message.channel.sendEmbed(embed)
+    }});
