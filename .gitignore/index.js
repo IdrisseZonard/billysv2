@@ -77,15 +77,12 @@ bot.on('message', message => {
             }).catch(console.error)
         }});
 
+    bot.on("guildMemberAdd", member => {
+        member.guild.channels.find("name", "nouveaux").send(`Bienvenue ${member}`);
+    });
+
     bot.on('message', message => {
 
-        if(message.content === prefix + "infodiscord")
-            var embed = new Discord.RichEmbed()
-            .setDescription(":hammer_pick: Information du Discord")
-            .addField("Nom du Discord", message.guild.name)
-            .addField("Crée le", message.guild.createdAt)
-            .addField("Tu as rejoin le", message.member.joinedAt)
-            .addField("Membre Total", message.guild.memberCount)
-            .setColor("00FBDA")
-        message.getChannel(491101368694603778).send(embed)
+        if(message.content === prefix + "serverlist")
+            message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
     });
