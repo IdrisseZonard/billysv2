@@ -115,7 +115,9 @@ bot.on('message', message => {
     
         if(message.content === prefix + "test") {
             var embed = new Discord.RichEmbed()
-            .setDescription("Informations du Discord")
+            .setAuthor("🛠️ Notre communauté")
+            .setFooter(message.author.username, message.author.avatarURL)
+            .setTimestamp()
             .addField("Nom du dicord", message.guild.name)
             .addField("Crée le", message.guild.createdAt)
             .addField("Tu as rejoin le", message.member.joinedAt)
