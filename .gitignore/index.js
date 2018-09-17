@@ -110,3 +110,16 @@ bot.on('message', message => {
             .setColor("00FBDA")
         message.channel.sendEmbed(embed)
     });
+
+    bot.on('message', message => {
+    
+        if(message.content === prefix + "total")
+            var embed = new Discord.RichEmbed()
+            .setAuthor("🛠️ Notre communauté")
+            .setFooter(message.author.username, message.author.avatarURL)
+            .setTimestamp()
+            .addField("Le dicord BillyRP", "https://discord.gg/QuvxPrf")
+            .addField("Le dicord Billy's Pub", message.guild.memberCount)
+            .setColor("00FBDA")
+        message.channel.sendEmbed(embed)
+    });
