@@ -14,8 +14,8 @@ bot.on('message', message => {
     if (message.content === prefix + "help") {
 
         var help_embed = new Discord.RichEmbed()
-        .setAuthor(message.author.username, message.author.avatarURL)
-        .setFooter("Billy's BOT V2")
+        .setAuthor("Les commandes")
+        .setFooter(message.author.username, message.author.avatarURL)
         .setTimestamp()
         .setColor("E26302") //http://www.code-couleur.com
         .addField(":cop: Modération \n \n - Ban | Usage -!ban @user \n - Kick | Usage -!kick @user \n - Mute | ( EN DEV ) \n - Clear | Usage -!clear <nombre> \n", ".")
@@ -126,4 +126,17 @@ bot.on('message', message => {
         message.channel.sendEmbed(embed)
     }});
 
+    bot.on('message', message => {
+
+        if(message.content.startsWith(prefix + "clear")) {
+            if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas la permission !");
+    
+            let args = message.content.split(" ").slice(1);
+    
+            if(!args[0]) return message.channel.send("Tu dois préciser un nombre de messages à supprimer !")
+            message.channel.bulkDelete(args[0]).then(() => {
+                message.channel.send(`${args[0]} message ont été supprimés !`);
+        })
+      }
+    });
 
