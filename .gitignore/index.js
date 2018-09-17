@@ -86,3 +86,41 @@ bot.on('message', message => {
         if(message.content === prefix + "serverlist")
             message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
     });
+
+    bot.on('message', message => {
+
+        if(message.content === prefix + "ping")
+            message.channel.sendMessage('Temps de latence avec le serveur: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
+    });
+
+    bot.on('message', message => {
+
+        if(message.content.startsWith(prefix + "clear")) {
+            if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas la permission !");
+    
+            let args = message.content.split(" ").slice(1);
+    
+            if(!args[0]) return message.channel.send("Tu dois préciser un nombre de messages à supprimer !")
+            message.channel.bulkDelete(args[0]).then(() => {
+                message.channel.send(`${args[0]} message ont été supprimés !`);
+        })
+      }
+    });
+
+    bot.on('guildMemberAdd', member => {
+        var role = member.guild.roles.find('name', '🔊 Membre Communauté 🔊');
+        member.addRole(role)
+    });
+
+    bot.on('message', message => {
+
+        if(message.content === prefix + "communaute")
+            var embed = new Discord.RichEmbed()
+            .setAuthor("🛠️ Notre communauté")
+            .setFooter(message.author.username, message.author.avatarURL)
+            .setTimestamp()
+            .addField("Le dicord BillyRP", "https://discord.gg/QuvxPrf")
+            .addField("Le dicord Billy's Pub", "https://discord.gg/78txJyR")
+            .setColor("00FBDA")
+        message.channel.sendEmbed(embed)
+    });
