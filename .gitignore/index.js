@@ -147,7 +147,7 @@ bot.on('message', message => {
             .setAuthor("🛠️ Les Partenariats")
             .setFooter(message.author.username, message.author.avatarURL)
             .setTimestamp()
-            .addField("Commande en Développement", "Contactez @Idrisse LaZone#4051")
+            .addField("\n Commande en Développement", "\n Contactez Idrisse")
             .setColor("E26302")
         message.channel.sendEmbed(embed)
     }});
