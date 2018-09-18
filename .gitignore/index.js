@@ -1,28 +1,27 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-var prefix = ("-!")
+var prefix = ("*")
 
 bot.on('ready', function() {
-    bot.user.setActivity('-!help', { type: 'PLAYING' });
+    bot.user.setActivity('*help | Crée par Idrisse', { type: 'PLAYING' });
     console.log("Connectedç");
 });
 
-bot.login(process.env.TOKEN);
-
+bot.login("NDkxNDg3MTgzODI0NDg2NDAx.DoIlBA.hoh-htPwvbFNXS03dF_LXdy6QD0");
 
 bot.on('message', message => {
     if (message.content === prefix + "help") {
 
         var help_embed = new Discord.RichEmbed()
-        .setAuthor(message.author.username, message.author.avatarURL)
-        .setFooter("Billy's BOT V2")
+        .setAuthor("🛠️ Les commandes disponible")
+        .setFooter(message.author.username, message.author.avatarURL)
         .setTimestamp()
         .setColor("E26302") //http://www.code-couleur.com
-        .addField(":cop: Modération \n \n - Ban | Usage -!ban @user \n - Kick | Usage -!kick @user \n - Mute | ( EN DEV ) \n - Clear | Usage -!clear <nombre> \n", ".")
-        .addField(":bust_in_silhouette: Joueur \n \n- Aide | Usage -!help \n- Informations Discord | Usage -!infodiscord \n- Server List | Usage -!serverlist \n- Ping | Usage -!ping \n- Communauté  | Usage -!communaute", ".")
+        .addField(":cop: Modération \n \n - Ban | Utilisation *ban @user \n - Kick | Utilisation *kick @user \n - Mute | ( EN DEV ) \n - Clear | Utilisation *clear <nombre> \n", ".")
+        .addField(":bust_in_silhouette: Joueur \n \n- Aide | Utilisation *help \n- Informations Discord | Utilisation *infodiscord \n- Server List | Utilisation *serverlist \n- Ping | Utilisation *ping \n- Createur  | Utilisation *createur", ".")
         message.channel.send(help_embed)
-          }
+}
 
     if (message.content === "fdp"){
         message.delete()
@@ -31,6 +30,28 @@ bot.on('message', message => {
     }
 });
 
+bot.on("guildMemberAdd", member => {
+    member.guild.channels.find("name", "nouveaux").send(`Bienvenue ${member}`);
+});
+
+bot.on('guildMemberAdd', member => {
+    var role = member.guild.roles.find('name', '🔊 Membre Communauté 🔊');
+    member.addRole(role)
+});
+
+bot.on('message', message => {
+
+    if(message.content.startsWith(prefix + "clear")) {
+        if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas la permission !");
+
+        let args = message.content.split(" ").slice(1);
+
+        if(!args[0]) return message.channel.send("Tu dois préciser un nombre de messages à supprimer !")
+        message.channel.bulkDelete(args[0]).then(() => {
+            message.channel.send(`${args[0]} message ont été supprimés !`);
+    })
+  }
+});
 
 bot.on('message', message => {
     let command = message.content.split(" ")[0];
@@ -46,7 +67,7 @@ bot.on('message', message => {
         }
         if(message.mentions.users.size  === 0) {
     var kickuser_embed = new Discord.RichEmbed()
-    .addField("Merci de mentionner l'utiliseur a éjécter", ":hammer_pick:")
+    .addField("Merci de mentionner l'utiliseur a éjécter", "*kick @user")
         return message.channel.send(kickuser_embed);
         }
         let kickMember = message.guild.member(message.mentions.users.first());
@@ -79,7 +100,7 @@ bot.on('message', message => {
             if (!member)
     var banperm_embed = new Discord.RichEmbed()
     .setColor("E26302")
-    .addField("Merci de mentionner l'utilisateur à bannir.", "b!ban @user")
+    .addField("Merci de mentionner l'utilisateur à bannir.", "*ban @user")
         return message.channel.send(banperm_embed);
             member.ban().then(member => {
     var banuser_embed = new Discord.RichEmbed()
@@ -88,65 +109,49 @@ bot.on('message', message => {
         return message.channel.send(banuser_embed);
                 message.guild.channels.find("name", "sanctions").send(`**${member.user.username} a été banni du discord par **${message.author.username}`)
             }).catch(console.error)
-        }});
+}});
 
-    bot.on('message', message => {
+bot.on('message', message => {
 
-        if(message.content === prefix + "infodiscord")
-            var embed = new Discord.RichEmbed()
-            .setDescription(":hammer_pick: Information du Discord")
-            .addField("Nom du Discord", message.guild.name)
-            .addField("Crée le", message.guild.createdAt)
-            .addField("Tu as rejoin le", message.member.joinedAt)
-            .addField("Membre Total", message.guild.memberCount)
-            .setColor("00FBDA")
-            message.channel.sendEmbed(embed)
-    });
-
-    bot.on("guildMemberAdd", member => {
-        member.guild.channels.find("name", "nouveaux").send(`Bienvenue ${member}`);
-    });
-
-    bot.on('message', message => {
-
-        if(message.content === prefix + "serverlist")
-            message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
-    });
-
-    bot.on('message', message => {
-
-        if(message.content === prefix + "ping")
-            message.channel.sendMessage('Temps de latence avec le serveur: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
-    });
-
-    bot.on('message', message => {
-
-        if(message.content.startsWith(prefix + "clear")) {
-            if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas la permission !");
-    
-            let args = message.content.split(" ").slice(1);
-    
-            if(!args[0]) return message.channel.send("Tu dois préciser un nombre de messages à supprimer !")
-            message.channel.bulkDelete(args[0]).then(() => {
-                message.channel.send(`${args[0]} message ont été supprimés !`);
-        })
-      }
-    });
-
-    bot.on('guildMemberAdd', member => {
-        var role = member.guild.roles.find('name', '🔊 Membre Communauté 🔊');
-        member.addRole(role)
-    });
-
-    bot.on('message', message => {
-
-        if(message.content === prefix + "communaute")
-            var embed = new Discord.RichEmbed()
-            .setAuthor("🛠️ Notre communauté")
-            .setFooter(message.author.username, message.author.avatarURL)
-            .setTimestamp()
-            .addField("Le dicord BillyRP", "https://discord.gg/QuvxPrf")
-            .addField("Le dicord Billy's Pub", "https://discord.gg/78txJyR")
-            .setColor("00FBDA")
+    if(message.content === prefix + "infodiscord")
+        var embed = new Discord.RichEmbed()
+        .setAuthor("🛠️ Les informations")
+        .setFooter(message.author.username, message.author.avatarURL)
+        .setTimestamp()
+        .addField("Nom du Discord", message.guild.name)
+        .addField("Crée le", message.guild.createdAt)
+        .addField("Tu as rejoin le", message.member.joinedAt)
+        .addField("Membre Total", message.guild.memberCount)
+        .setColor("00FBDA")
         message.channel.sendEmbed(embed)
-    });
+});
+
+bot.on("guildMemberAdd", member => {
+    member.guild.channels.find("name", "nouveaux").send(`Bienvenue ${member}`);
+});
+
+bot.on('message', message => {
+
+    if(message.content === prefix + "serverlist")
+        message.channel.send(bot.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
+});
+
+bot.on('message', message => {
+
+    if(message.content === prefix + "ping")
+        message.channel.sendMessage('Temps de latence avec le serveur: `' + `${message.createdTimestamp - Date.now()}` + ' ms`');
+});
+
+bot.on('message', message => {
+
+    if(message.content === prefix + "createur")
+        var embed = new Discord.RichEmbed()
+        .setAuthor("🛠️ Ma communauté")
+        .setFooter(message.author.username, message.author.avatarURL)
+        .setTimestamp()
+        .addField("Le discord Support BOT", "https://discord.gg/AkyhuTN")
+        .addField("Le dicord BillyRP", "https://discord.gg/QuvxPrf")
+        .addField("Le dicord Billy's Pub", "https://discord.gg/78txJyR")
+        .setColor("00FBDA")
+    message.channel.sendEmbed(embed)
+});
