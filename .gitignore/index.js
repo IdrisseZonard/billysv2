@@ -155,3 +155,13 @@ bot.on('message', message => {
         .setColor("00FBDA")
     message.channel.sendEmbed(embed)
 });
+
+bot.on('message', message => {
+    if(message.content[0] === prefix) {
+        if(message.content === prefix + 'test') {
+
+            let role = message.guild.roles.find("name", "FONDATEUR")
+
+                message.member.addRole(role)
+                message.reply("Tu as maitenant le role Test")
+}}});
