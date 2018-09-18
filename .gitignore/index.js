@@ -126,10 +126,6 @@ bot.on('message', message => {
         message.channel.sendEmbed(embed)
 });
 
-bot.on("guildMemberAdd", member => {
-    member.guild.channels.find("name", "nouveaux").send(`Bienvenue ${member}`);
-});
-
 bot.on('message', message => {
 
     if(message.content === prefix + "serverlist")
