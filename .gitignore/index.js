@@ -24,9 +24,13 @@ bot.on('message', message => {
 }
 
     if (message.content === "fdp"){
+        let role = message.guild.roles.find("name", "🔇 Mute | Infraction 🔇")
+
+        message.member.addRole(role)
+        message.guild.channels.find("name", "💼sanctions").send(`${message.author.username} a était automute pour "Insulte"`)
         message.delete()
         message.reply("Insulte interdit ! Le Staff te surveilles");
-        console.log("Insulte FDP");
+        console.log(`Insulte FDP`);
     }
 });
 
